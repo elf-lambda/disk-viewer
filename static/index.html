@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disk Usage Analyzer</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <h1>Disk Usage Analyzer</h1>
+
+    <div id="controls">
+        <label for="dirPath">Analyze Directory:</label>
+        <input type="text" id="dirPath" placeholder="/path/to/scan or C:\folder" size="50">
+        <button id="analyzeBtn">Analyze</button>
+        <div class="warning">!! Running this locally gives it file access. Do NOT expose publicly. !!
+        </div>
+    </div>
+
+    <div id="loading" class="hidden">Loading...</div>
+    <div id="error" class="error hidden"></div>
+
+    <div id="summary" class="hidden">
+        <h2>Analysis Summary</h2>
+        <div class="summary-content">
+            <div class="summary-text-column">
+                <div class="summary-group">
+                    <div class="summary-item summary-path">
+                        <span class="summary-label">Scanned Path:</span>
+                        <span id="scannedPath" class="summary-value"></span>
+                    </div>
+                </div>
+                <div class="summary-group key-stats-group">
+                    <div class="summary-item summary-stat">
+                        <span class="summary-label">Total Files:</span>
+                        <span id="totalFiles" class="summary-value"></span>
+                    </div>
+                    <div class="summary-item summary-stat">
+                        <span class="summary-label">Total Size:</span>
+                        <span id="totalSize" class="summary-value"></span>
+                    </div>
+                </div>
+                <div class="summary-group size-distribution-group">
+                    <h3>File Size Distribution:</h3>
+                    <ul id="sizeCounts">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="fileSizeDistributionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="lists-container">
+        <div id="topDirectoriesSection" class="hidden">
+            <h2>Top Directories by Size</h2>
+            <ul id="topDirectoriesList">
+            </ul>
+        </div>
+
+        <div id="topFilesSection" class="hidden">
+            <h2>Largest Files</h2>
+            <div class="filter-controls">
+                <label for="minFileSize">Minimum File Size:</label>
+                <select id="minFileSize">
+                    <option value="0">All Files</option>
+                    <option value="1048576">>&nbsp;1 MB</option>
+                    <option value="5242880">>&nbsp;5 MB</option>
+                    <option value="10485760">>&nbsp;10 MB</option>
+                    <option value="104857600">>&nbsp;100 MB</option>
+                    <option value="536870912">>&nbsp;512 MB</option>
+                    <option value="1073741824">>&nbsp;1 GB</option>
+                </select>
+                <span id="fileCountDisplay"></span>
+            </div>
+
+            <div id="filePaginationControls" class="pagination-controls hidden">
+                <button id="prevPageBtn">Previous</button>
+                <span id="pageDisplay">Page 1 of 1</span>
+                <button id="nextPageBtn">Next</button>
+            </div>
+
+            <ul id="topFilesList">
+            </ul>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+
+</html>
