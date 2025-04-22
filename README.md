@@ -19,7 +19,7 @@ A web-based tool to analyze disk usage for a specified directory. It provides a 
 
 ## Requirements
 
-This project consists of a frontend (HTML, CSS, JavaScript) and uses the default Go Http server to sever the frontend and acces the filesystem.
+This project consists of a frontend (HTML, CSS, JavaScript) and uses the default Go Http server to serve the frontend and access the filesystem.
 
 The backend exposes an API endpoint (as used by the frontend, e.g., `/api/analyze`) that accepts a directory path as a parameter and returns JSON data containing:
 
