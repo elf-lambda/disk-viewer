@@ -88,9 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const totals = { ...direct };
 
     for (const dir of sortedDirs) {
-      const parent = getParentDirectory(
-        dir + (/^[a-zA-Z]:$|^\/$/.test(dir) ? "" : "/dummy")
-      );
+      // const parent = getParentDirectory(
+      //   dir + (/^[a-zA-Z]:$|^\/$/.test(dir) ? "" : "/dummy")
+      // );
+      const parent = getParentDirectory(dir);
       const key = parent?.replace(/\/+$/, "");
       if (key && allSet.has(key)) {
         totals[key] = (totals[key] || 0) + (totals[dir] || 0);
